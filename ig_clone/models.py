@@ -50,3 +50,26 @@ class Comments(models.Model):
     def __str__(self):
         
         return self.comment
+
+class Profile(models.Model):
+    profile_photo = models.ImageField(upload_to='images')
+    bio = HTMLField()
+    user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    
+    
+    def __str__(self):
+        
+        return self.profile_photo.url
+    
+    def save_profile(self):
+        self.save()
+        
+    def delete_profile(self):
+        self.delete()
+    
+    @classmethod   
+    def update_bio(cls,id,new_bio):
+        cls.objects.filter(pk = id).update(bio=new_bio)
+        new_bio_object = cls.objects.get(bio = new_bio)
+        new_bio = new_bio_object.bio
+        return new_bio
