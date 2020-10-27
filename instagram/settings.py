@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ig_clone'
+    'ig_clone', 
+    'bootstrap4',
+    'tinymce',
+    'vote',
 ]
 
 MIDDLEWARE = [
