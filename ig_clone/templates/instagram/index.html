@@ -35,3 +35,29 @@
 
 
         </div>
+        <div class=" col-md-3 "></div>
+    </div>
+
+    <div class="modal fade" id="{{image.image_name}}{{image.id}}" tabindex="-1" role="dialog"
+        aria-labelledby="examplemodal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="modaltitle">{{image.image_name}}</h4>
+
+
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{image.image.url}}" alt="" width="100%" height="100%" class="img-top">
+                </div>
+                <div class="modal-footer">
+                    <p class="mr-auto">{{image.image_caption}}</p>
+
+                    <button type="button" class="btn btn-sm btn-outline-info" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
