@@ -74,4 +74,17 @@ def comments(request,id):
     comments = Comments.get_comments(id)
     number = len(comments   )
     
-    return render(request,'instagram/comments.html',{"comments":comments,"number":number}
+    return render(request,'instagram/comments.html',{"comments":comments,"number":number})
+
+@login_required (login_url='/accounts/register/')          
+def like_images(request,id):
+    image =  Image.get_single_photo(id)
+    user = request.user
+    user_id = user.id
+    
+    if user.is_authenticated:
+        uplike = image.votes.up(user_id)
+        image.likes = image.votes.count()
+        image.save()
+        
+    return redirect('home')
