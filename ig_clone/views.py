@@ -68,4 +68,10 @@ def add_comment(request,id):
 
     else:
         form = CommentForm()
-        return render(request,'socioapp/new_comment.html',{"form":form,"image":image})        
+        return render(request,'instagram/new_comment.html',{"form":form,"image":image})   
+
+def comments(request,id):
+    comments = Comments.get_comments(id)
+    number = len(comments   )
+    
+    return render(request,'instagram/comments.html',{"comments":comments,"number":number}
