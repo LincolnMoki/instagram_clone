@@ -96,8 +96,8 @@ def search_user(request):
         search_term = request.GET.get("search_user")
         searched_user = User.objects.filter(username__icontains=search_term)
         message = f"{search_term}"  
-        return render(request, 'socioapp/search_results.html', {"message": message, "users": searched_user})
+        return render(request, 'instagram/search_results.html', {"message": message, "users": searched_user})
 
     else:
         message = "You haven't searched for any term "
-        return render(request, 'socioapp/search_results.html', {"message": message})
+        return render(request, 'instagram/search_results.html', {"message": message})
