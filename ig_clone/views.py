@@ -88,3 +88,16 @@ def like_images(request,id):
         image.save()
         
     return redirect('home')
+
+def search_user(request):
+    
+    if 'search_user' in request.GET and request.GET["search_user"]:
+
+        search_term = request.GET.get("search_user")
+        searched_user = User.objects.filter(username__icontains=search_term)
+        message = f"{search_term}"  
+        return render(request, 'socioapp/search_results.html', {"message": message, "users": searched_user})
+
+    else:
+        message = "You haven't searched for any term "
+        return render(request, 'socioapp/search_results.html', {"message": message})
