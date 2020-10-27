@@ -37,3 +37,17 @@ def profile_info(request):
     
     
     return render(request,'instagram/profile.html',{"images":posts,"profile":profile_info,"current_user":current_user})
+
+def profile_edit(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('profile')
+
+    else:
+        form = ImageProfileForm()
+        return render(request,'instagram/edit.html',{"form":form})
