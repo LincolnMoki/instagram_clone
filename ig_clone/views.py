@@ -83,6 +83,7 @@ def like_images(request,id):
     user_id = user.id
     
     if user.is_authenticated:
+        url(r'', include('socioapp.urls'))
         uplike = image.votes.up(user_id)
         image.likes = image.votes.count()
         image.save()

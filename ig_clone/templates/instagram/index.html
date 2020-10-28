@@ -12,7 +12,7 @@
 
         </div>
         <div class=" col-md-6 mx-auto">
-            <div class="card mb-2" style="width: 25rem;">
+            <div class="card mb-2" style="width: 45rem;  ">
                 <div class="card-header">
                     <span><img src="{{image.user.profile.profile_photo.url}}" alt="" data-target="#{{image.image_name}}{{image.id}}"
                         data-toggle="modal"
@@ -25,10 +25,10 @@
                 <img src="{{image.image.url}}" alt="" class="img-thumbnail img-responsive img-fluid">
 
                 <div class="card-footer">
-                    <a href="{% url 'likes' image.id%}" class="btn btn-sm btn-outline-info">{{image.likes}} Likes</a>
+                    <a href="{% url 'likes' image.id%}" class="btn btn-sm btn-outline-success ">{{image.likes}} Likes</a>
 
-                    <a href="{% url 'newComment' image.id%}" class="btn btn-outline-info btn-sm">Add comments</a>
-                    <a href="{% url 'comments' image.id %}" class="btn btn-outline-info btn-sm">view comments</a>
+                    <a href="{% url 'newComment' image.id%}" class="btn btn-outline-success btn-sm">Add comments</a>
+                    <a href="{% url 'comments' image.id %}" class="btn btn-outline-success btn-sm">view comments</a>
                 </div>
             </div>
 

@@ -1,24 +1,44 @@
+{% load bootstrap4 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% if title %}
+
+        <title>instagram</title>
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"
+        type="image/x-icon">
+
+    {% endif %}
     {%  block styles %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    {% bootstrap_css %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" /> 
-     
-    {% bootstrap_css %}
-    
-    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/index.css'%}">
     {% endblock %}
     
-    <title>Instagram</title>
+    
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><i class="fab fa-4x fa-instagram"></i></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="">
+              <img src="https://www.pngitem.com/pimgs/m/132-1327993_instagram-logo-word-png-transparent-png.png"  height="50px">
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,19 +47,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% if user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
+                <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_user'%}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_user">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <a href="{% url 'home' %}" class="navbar-item">
+                    <i class="material-icons">home</i>
+                  </a>
                 <li class="nav-item">
                     <a class="nav-link" href="{%url 'profile'%}">{{user.username}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/logout" tabindex="-1" aria-disabled="true">logout </a>
                 </li>
-                <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_user'%}">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_user">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+               
             </ul>
             <span><img src="{{user.profile.profile_photo.url}}" alt="" style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
             <!--  -->
